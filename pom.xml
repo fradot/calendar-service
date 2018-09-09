@@ -4,37 +4,54 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.microprofile.sample.todo.app</groupId>
-    <artifactId>microprofile-sample</artifactId>
+    <groupId>com.piggymetrics</groupId>
+    <artifactId>calendar-service</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Microprofile Sample Todo App</name>
+    <name>Calendar Service (PiggyMetrics)</name>
 
     <packaging>war</packaging>
 
     <properties>
-        <version.wildfly.swarm>2018.5.0</version.wildfly.swarm>
+        <version.thorntail>2.2.0.Final</version.thorntail>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>bom-all</artifactId>
-                <version>${version.wildfly.swarm}</version>
+                <groupId>io.thorntail</groupId>
+                <artifactId>bom</artifactId>
+                <version>${version.thorntail}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>jaxrs</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
-                <groupId>org.wildfly.swarm</groupId>
-                <artifactId>wildfly-swarm-plugin</artifactId>
-                <version>${version.wildfly.swarm}</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>${failOnMissingWebXml}</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.thorntail</groupId>
+                <artifactId>thorntail-maven-plugin</artifactId>
+                <version>${version.thorntail}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -43,24 +60,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-
-    <!-- https://mvnrepository.com/artifact/org.wildfly.swarm.servers/microprofile -->
-    <dependencies>
-        <dependency>
-            <groupId>org.wildfly.swarm.servers</groupId>
-            <artifactId>microprofile</artifactId>
-            <version>2018.5.0</version>
-        </dependency>
-    </dependencies>
-
 </project>
