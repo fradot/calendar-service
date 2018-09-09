@@ -15,5 +15,6 @@ public class EventResource {
         return Response.ok("Great,it works!").build();
     }
 
-
 }
+
+
