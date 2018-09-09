@@ -1,1 +1,2 @@
-# Sample microprofile and wildfly-swarm app
+# calendar-service
+calendar-service (PiggyMetrics)
